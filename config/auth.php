@@ -10,100 +10,28 @@ class Auth
         $Username = $data['Username'];
         $Password = password_hash($data['Password'], PASSWORD_BCRYPT);
         $Email = $data['Email'];
+        $telp = $data['telp'];
         $NamaLengkap = $data['NamaLengkap'];
         $Alamat = $data['Alamat'];
-        $sql = "INSERT INTO user VALUES (NULL, '$Username','$Password','$Email','$NamaLengkap','$Alamat','user')";
+        $sql = "INSERT INTO user VALUES (NULL, '$Username','$Password','$Email', $telp ,'$NamaLengkap','$Alamat','user')";
         $query = mysqli_query($cek->koneksi(), $sql);
         if ($query) {
             echo "<script>";
             echo 'alert("Berhasil Daftar Akun ");';
-            echo 'window.location.href = "index.php?page=login";';
+            echo 'window.location.href = "index.php?page=logRegist";';
             echo '</script>';
         } else {
             echo "<script>";
             echo 'alert("Pendaftaran Gagal.");';
-            echo 'window.location.href = "index.php?page=register";';
+            echo 'window.location.href = "index.php?page=logRegist";';
             echo '</script>';
         }
     }
 
-    public function registerPetugas($data)
+    public function login($username, $password)
     {
         $cek = new Koneksi;
-        $Username = $data['Username'];
-        $Password = password_hash($data['Password'], PASSWORD_BCRYPT);
-        $Email = $data['Email'];
-        $NamaLengkap = $data['NamaLengkap'];
-        $Alamat = $data['Alamat'];
-        $sql = "INSERT INTO user VALUES (NULL, '$Username','$Password','$Email','$NamaLengkap','$Alamat','petugas')";
-        $query = mysqli_query($cek->koneksi(), $sql);
-        if ($query) {
-            echo "<script>";
-            echo 'alert("Berhasil Daftar Akun Petugas ");';
-            echo 'window.location.href = "dashboard.php?page=petugas";';
-            echo '</script>';
-        } else {
-            echo "<script>";
-            echo 'alert("Pendaftaran Gagal Akun Petugas.");';
-            echo 'window.location.href = "dashboard.php?page=petugas";';
-            echo '</script>';
-        }
-    }
-
-    //hapus petugas
-    public function hapuspetugas($UserID)
-    {
-        $cek = new Koneksi;
-        $sql = "DELETE from user WHERE UserID='$UserID'";
-        $query = mysqli_query($cek->koneksi(), $sql);
-        if ($query) {
-            echo "<script>";
-            echo 'alert("Berhasil Hapus Petugas!");';
-            echo 'window.location.href = "dashboard.php?page=petugas";';
-            echo '</script>';
-        } else {
-            echo "<script>";
-            echo 'alert("Gagal Hapus Data Petugas!");';
-            echo 'window.location.href = "dashboard.php?page=petugas";';
-            echo '</script>';
-        }
-    }
-
-    //edit petugas
-    public function editpetugas($UserID)
-    {
-        $cek = new Koneksi;
-        $sql = "SELECT * FROM user WHERE UserID = '$UserID'";
-        $query = mysqli_query($cek->koneksi(), $sql);
-        $data = mysqli_fetch_assoc($query);
-        return $data;
-    }
-    //untuk mengupdate/mengubah data buku
-    public function updatepetugas($UserID, $Username, $Password, $Email, $NamaLengkap, $Alamat)
-    {
-        $cek = new Koneksi;
-        $sql = "UPDATE user SET Username='$Username', Password='$Password', Email='$Email', NamaLengkap='$NamaLengkap' , Alamat='$Alamat' WHERE UserID = '$UserID'";
-        //var_dump($sql);
-        $query = mysqli_query($cek->koneksi(), $sql);
-        //jika query berjalan maka berhasil
-        if ($query) {
-            echo "<script>";
-            echo 'window.location.href = "dashboard.php?page=databuku";';
-            echo '</script>';
-            //jika gagal
-        } else {
-            echo "<script>";
-            echo 'alert("Petugas gagal diubah"); ';
-            echo 'window.location.href = "dashboard.php?page=databuku";';
-            echo '</script>';
-        }
-    }
-
-
-    public function login($email, $password)
-    {
-        $cek = new Koneksi;
-        $sql = "SELECT * FROM user WHERE email = '$email'";
+        $sql = "SELECT * FROM user WHERE Username = '$username'";
         $query = mysqli_query($cek->koneksi(), $sql);
         $data = mysqli_fetch_assoc($query);
 
@@ -132,7 +60,7 @@ class Auth
         } else {
             echo "<script>";
             echo 'alert("Login Gagal."); ';
-            echo 'window.location.href = "index.php?page=login";';
+            echo 'window.location.href = "index.php?page=logRegist";';
             echo '</script>';
         }
     }
@@ -141,7 +69,7 @@ class Auth
         session_destroy();
         echo "<script>";
         echo 'alert("Logout Berhasil."); ';
-        echo 'window.location.href = "index.php?page=login";';
+        echo 'window.location.href = "index.php?page=logRegist";';
         echo '</script>';
     }
 }

@@ -1,14 +1,21 @@
-</div>
-
 </section>
 </div>
 
 <footer class="main-footer">
-    <strong>Copyright &copy; 2024-2025 <a href="">madebymrs</a>.</strong>
+    <strong> Perpustakaan Digital 2024 </strong> By Mayoras.
+
+    <style>
+        .social-link {
+            margin-right: 10px;
+            color: inherit;
+        }
+    </style>
 
     <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 2.7.3
+        <a href="https://github.com/ererern" class="social-link"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/uranusmeren?igsh=MXRjZXZuMTM0dHc4bQ==" class="social-link"><i class="fab fa-instagram"></i></a>
     </div>
+
 </footer>
 <aside class="control-sidebar control-sidebar-dark">
 </aside>
@@ -32,7 +39,6 @@
 
 <script src="Adminv/dist/js/adminlte.min.js?v=3.2.0"></script>
 
-<script src="Adminv/dist/js/demo.js"></script>
 
 <script>
     $(function() {
@@ -44,7 +50,6 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         $('#example2').DataTable({
             "paging": true,
-            "lengthChange": false,
             "searching": true,
             "ordering": true,
             "info": true,

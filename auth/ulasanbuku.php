@@ -1,7 +1,8 @@
-<div class="card-body">
-    <h1>Ulasan Buku</h1>
-    <hr>
+<div class="card">
+
     <div class="card-body">
+        <h1>Ulasan Buku</h1>
+        <hr>
         <table id="example2" class="table table-striped">
             <thead>
                 <tr>
@@ -38,4 +39,3 @@
             </tbody>
         </table>
     </div>
-</div>

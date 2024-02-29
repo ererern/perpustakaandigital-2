@@ -2,19 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Digital Library | Log in</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
-
-    <link rel="stylesheet" href="adminv/plugins/fontawesome-free/css/all.min.css">
-
-    <link rel="stylesheet" href="adminv/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-    <link rel="stylesheet" href="adminv/dist/css/adminlte.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Registrasi</title>
+    <link rel="icon" type="png" href="adminv/book2.png">
+    <link rel="stylesheet" href="Adminv/dist/css/style.css"> <!-- Import stylesheet CSS -->
 </head>
-
-<body class="hold-transition login-php">
-    <div class="login-container">

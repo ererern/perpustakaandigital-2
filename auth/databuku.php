@@ -1,62 +1,87 @@
-<div class="card-body">
-    <h1>Data Buku</h1>
-    <hr>
-    <?php
-    if ($_SESSION['data']['Role'] == 'admin' || $_SESSION['data']['Role'] == 'petugas') { ?>
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahbuku">
-                <i class="fas fa-plus fa-sm text-white-50"></i>Tambah Buku</button>
-        </div>
-    <?php } ?>
-    <div class="table-responsive">
-        <table class="table table-striped" id="example2">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul Buku</th>
-                    <th>Penulis</th>
-                    <th>Penerbit</th>
-                    <th>Tahun Terbit</th>
-                    <th>Kategori</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                foreach ($fung->viewDatabuku() as $d) { ?>
+<div class="card">
+    <div class="card-body">
+        <h1>Daftar Buku</h1>
+        <hr>
+        <?php
+        if ($_SESSION['data']['Role'] == 'admin' || $_SESSION['data']['Role'] == 'petugas') { ?>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahbuku">
+                    <i class="fas fa-plus fa-sm text-white-50"></i>Tambah Buku</button>
+            </div>
+        <?php } ?>
+        <div class="table-responsive">
+            <table class="table table-striped" id="example2">
+                <thead>
                     <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= $d['Judul'] ?></td>
-                        <td><?= $d['Penulis'] ?></td>
-                        <td><?= $d['Penerbit'] ?></td>
-                        <td><?= $d['TahunTerbit'] ?></td>
-                        <td>
-                            <?php
-                            foreach ($fung->katbuku($d['BukuID']) as $k) {
-                            ?>
-                                <span class="badge badge-primary"><?= $k['NamaKategori'] ?></span>
-                            <?php } ?>
-                        </td>
-                        <td>
-                            <?php
-                            if ($_SESSION['data']['Role'] == 'user') { ?>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#pinjam<?= $d['BukuID'] ?>">Pinjam</button>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ulas<?= $d['BukuID'] ?>">Ulas</button>
-                            <?php } ?>
-                            <?php
-                            if ($_SESSION['data']['Role'] == 'admin' || $_SESSION['data']['Role'] == 'petugas') { ?>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit<?= $d['BukuID'] ?>"><i class="fa fa-edit fa-sm text-white"></i></button>
-
-                                <a href="dashboard.php?page=hapusBuku&BukuID=<?= $d['BukuID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah yakin menghapus Buku <?= $d['Judul'] ?>?')"><i class="fa fa-trash"></i> </a>
-                            <?php } ?>
-                        </td>
-
+                        <th>No</th>
+                        <th>Judul Buku</th>
+                        <th>Penulis</th>
+                        <th>Penerbit</th>
+                        <th>Tahun Terbit</th>
+                        <th>Kategori</th>
+                        <th>Aksi</th>
                     </tr>
-                <?php } ?>
-            </tbody>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($fung->viewDatabuku() as $d) { ?>
+
+                        <tr>
+                            <td><?= $no++ ?></td>
+                            <td><?= $d['Judul'] ?></td>
+                            <td><?= $d['Penulis'] ?></td>
+                            <td><?= $d['Penerbit'] ?></td>
+                            <td><?= $d['TahunTerbit'] ?></td>
+                            <td>
+                                <?php
+                                foreach ($fung->katbuku($d['BukuID']) as $f) {
+                                ?>
+                                    <span class="badge badge-primary"><?= $f['NamaKategori'] ?></span>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <!-- if -->
+
+                                <?php
+                                $cek = new Koneksi();
+                                $UserID = $_SESSION['data']['UserID'];
+                                $BukuID = $f['BukuID'];
+                                $sql = "SELECT * FROM peminjaman WHERE  BukuID='$BukuID'  and UserID='$UserID' and StatusPeminjaman<>'selesai'";
+                                $result = mysqli_query($cek->koneksi(), $sql);
+                                $hitung = mysqli_num_rows($result);
+
+
+                                ?>
+                                <?php
+                                if ($_SESSION['data']['Role'] == 'user') { ?>
+                                    <?php
+                                    if ($hitung > 0) { ?>
+                                        <button type="button" class="btn btn-info btn-sm" disabled>Pinjam</button>
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ulas<?= $d['BukuID'] ?>">Ulas</button>
+                                    <?php } else { ?>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#pinjam<?= $d['BukuID'] ?>">Pinjam</button>
+                                        <button type="button" class="btn btn-warning btn-sm" disabled>Ulas</button>
+                                    <?php }
+                                    ?>
+
+                                <?php } ?>
+
+                                <?php
+                                if ($_SESSION['data']['Role'] == 'admin' || $_SESSION['data']['Role'] == 'petugas') { ?>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit<?= $d['BukuID'] ?>"><i class="fa fa-edit fa-sm text-white"></i></button>
+
+                                    <a href="dashboard.php?page=hapusBuku&BukuID=<?= $d['BukuID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah yakin menghapus Buku <?= $d['Judul'] ?>?')"><i class="fa fa-trash"></i> </a>
+                                <?php } ?>
+
+                            </td>
+
+                        </tr>
+                    <?php } ?>
+                </tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -74,24 +99,27 @@
 
                     <div class="form-group">
                         <label for="">Judul Buku</label>
-                        <input type="text" class="form-control" name="Judul" required="">
+                        <input type="text" class="form-control" name="Judul" placeholder="Masukan Judul Buku" required="">
                     </div>
                     <div class="form-group">
                         <label for="">Penulis</label>
-                        <input type="text" class="form-control" name="Penulis" required="">
+                        <input type="text" class="form-control" name="Penulis" placeholder="Masukan Penulis" required="">
                     </div>
                     <div class="form-group">
                         <label for="">Penerbit</label>
-                        <input type="text" class="form-control" name="Penerbit" required="">
+                        <input type="text" class="form-control" name="Penerbit" placeholder="Masukan Penerbit" required="">
                     </div>
                     <div class="form-group">
                         <label for="">Tahun Terbit</label>
-                        <input type="text" class="form-control" name="TahunTerbit" required="">
+                        <input type="text" class="form-control" name="TahunTerbit" placeholder="Masukan Tahun Terbit" required="">
                     </div>
                     <div class="form-group">
+                        <label for="">Kategori </label>
                         <?php
                         foreach ($fung->viewkategori() as $d) { ?>
-                            <div><input type="checkbox" name="kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>"><?= $d['NamaKategori'] ?></div>
+
+                            <input type="checkbox" name="kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>"><?= $d['NamaKategori'] ?>
+
                         <?php } ?>
                     </div>
                 </div>
