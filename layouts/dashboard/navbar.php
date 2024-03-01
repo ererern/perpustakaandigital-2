@@ -10,7 +10,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <div class="text-dark text-start p-2 d-none d-sm-inline-block">Halo, <?php echo $_SESSION['data']['Role'] . '!'; ?></div>
+                    <div class="text-dark text-start p-2 d-none d-sm-inline-block">Halo, <?php echo $_SESSION['data']['Role']; ?> <?php echo $_SESSION['data']['NamaLengkap'] . '!'; ?></div>
                 </li>
 
             </ul>

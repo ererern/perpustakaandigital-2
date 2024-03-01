@@ -130,7 +130,6 @@ elseif ($_GET['page'] == 'petugas') {
 
 //reset password
 elseif ($_GET['page'] == 'resetpassword') {
-
     $fung->resetPassword($_POST['UserID']);
 }
 

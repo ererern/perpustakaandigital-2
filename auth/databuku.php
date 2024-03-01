@@ -51,7 +51,6 @@
                                 $result = mysqli_query($cek->koneksi(), $sql);
                                 $hitung = mysqli_num_rows($result);
 
-
                                 ?>
                                 <?php
                                 if ($_SESSION['data']['Role'] == 'user') { ?>
@@ -113,21 +112,23 @@
                         <label for="">Tahun Terbit</label>
                         <input type="text" class="form-control" name="TahunTerbit" placeholder="Masukan Tahun Terbit" required="">
                     </div>
+
                     <div class="form-group">
-                        <label for="">Kategori </label>
+                        <label for="">Kategori :</label>
                         <?php
                         foreach ($fung->viewkategori() as $d) { ?>
+                            <div>
+                                <div>
+                                    <input type="checkbox" name="kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>">
+                                    <?= $d['NamaKategori'] ?>
+                                </div>
+                            <?php } ?>
+                            </div>
 
-                            <input type="checkbox" name="kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>"><?= $d['NamaKategori'] ?>
-
-                        <?php } ?>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
             </form>
         </div>
         <!-- /.modal-content -->
@@ -169,24 +170,25 @@ foreach ($fung->viewDatabuku() as $s) { ?>
                             <input type="text" class="form-control" name="TahunTerbit" value="<?= $s['TahunTerbit']; ?>" required="">
                         </div>
                         <div class="form-group">
-                            <div class="form-group">
-                                <?php
-
-                                foreach ($fung->viewkategori() as $d) { ?>
-                                    <div><input type="checkbox" name="kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>"><?= $d['NamaKategori'] ?></div>
+                            <?php
+                            foreach ($fung->viewkategori() as $d) { ?>
+                                <div>
+                                    <div>
+                                        <input type="checkbox" name="kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>">
+                                        <?= $d['NamaKategori'] ?>
+                                    </div>
                                 <?php } ?>
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
+                                </div>
+
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
                 </form>
             </div>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-    </div>
     </div>
 <?php  }
 ?>
