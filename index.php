@@ -26,17 +26,7 @@ if ($_GET['page'] == 'postRegist') {
         $data['telp'] = $_POST['telp'];
         $data['NamaLengkap'] = $_POST['NamaLengkap'];
         $data['Alamat'] = $_POST['Alamat'];
-        if (isset($_POST['register']) && !empty($data)) {
-            $cek->register($data);
-        } else {
-
-            echo "<script>";
-            echo 'alert("Silahkan Daftar akun terlebih dahulu"); ';
-            // echo 'window.location.href = "index.php?page=logRegist";';
-            echo '</script>';
-
-            // echo "<script>alert('Silahkan Daftar akun terlebih dahulu');window.location.href ='index.php?page=logregist'</script>";
-        }
+        $cek->register($data);
     }
 }
 

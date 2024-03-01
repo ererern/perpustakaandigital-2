@@ -16,7 +16,6 @@
         </div>
         <div class="table-responsive">
             <table class="table table-striped" id="example2">
-
                 <thead>
                     <tr>
                         <th>No</th>

@@ -1,8 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <div class="container">
         <a href="" class="brand-link">
-
-            <span class="brand-text font-weight-light"> <img src="adminv/book2.png" width="20%" style="border-radius: 100%;" alt="logo Perpustakaan">Perpustakaan Digital</span>
+            <span class="brand-text font-weight-light"><img src="adminv/book2.png" width="20%" style="border-radius: 100%;" alt="logo Perpustakaan">Perpustakaan Digital</span>
         </a>
     </div>
 
@@ -45,7 +44,7 @@
                         <a href="dashboard.php?page=koleksi" class="nav-link">
                             <i class="nav-icon fas fa-bookmark"></i>
                             <p>
-                                Riwayat Peminjaman
+                                Koleksi Pribadi
                             </p>
                         </a>
                     </li>

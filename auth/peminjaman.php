@@ -2,12 +2,9 @@
   <div class="card-body">
     <h1>Detail Peminjaman</h1>
     <hr>
-    <?php
-    if ($_SESSION['data']['Role'] == 'petugas') { ?>
-      <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <a href="dashboard.php?page=printlaporan" class="btn btn-primary btn-sm"><i class="nav-icon fas fa-print"></i> Print</a>
-      </div>
-    <?php } ?>
+    <div class="d-sm-flex align-items-center justify-content-between mb-2">
+      <a href="dashboard.php?page=printlaporan" class="btn btn-primary btn-sm"><i class="nav-icon fas fa-print"></i> Print</a>
+    </div>
     <table id="example2" class="table table-striped">
       <thead>
         <tr>

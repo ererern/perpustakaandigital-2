@@ -246,7 +246,7 @@ class Fungsi
         $query = mysqli_query($cek->koneksi(), $sql);
         if ($query) {
             echo "<script>";
-            echo 'alert("Berhasil  konfirmasi Pengemabalian!");';
+            echo 'alert("Berhasil konfirmasi Pengembalian dan masuk ke koleksi pribadi user!");';
             echo 'window.location.href = "dashboard.php?page=datapeminjaman";';
             echo '</script>';
         } else {
@@ -331,7 +331,7 @@ class Fungsi
     {
         $cek = new Koneksi;
         $UserID = $_SESSION['data']['UserID'];
-        $sql = "SELECT * from koleksipribadi LEFT JOIN user ON koleksipribadi.UserID=user.UserID LEFT JOIN buku ON koleksipribadi.BukuID=buku.BukuID LEFT JOIN peminjaman ON koleksipribadi.UserID=peminjaman.UserID WHERE koleksipribadi.UserID='$UserID'";
+        $sql = "SELECT * from koleksipribadi LEFT JOIN buku ON koleksipribadi.BukuID=buku.BukuID WHERE koleksipribadi.UserID='$UserID'";
         $query = mysqli_query($cek->koneksi(), $sql);
         $select = [];
         while ($d = mysqli_fetch_assoc($query)) {

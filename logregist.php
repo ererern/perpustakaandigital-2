@@ -18,7 +18,7 @@
             </div>
             <div class="form-control signin-form">
                 <form action="index.php?page=postlogin" method="POST">
-                    <center><img src="Adminv/book2.png" alt="logo perpustakaan" width="80px"></center>
+                    <center><img src="Adminv/book2.png" alt="logo perpustakaan" class="img"></center>
                     <h2>Masuk Akun</h2>
                     <input type="text" name="Username" placeholder="Nama Pengguna" required />
                     <input type="password" name="Password" placeholder="Kata Sandi" required />
@@ -38,7 +38,7 @@
             </div>
             <div class="intro-control signup-intro">
                 <div class="intro-control__inner">
-                    <center><img src="Adminv/book2.png" alt="logo perpustakaan" width="80px"></center>
+                    <center><img src="Adminv/book2.png" alt="logo perpustakaan" class="img"></center>
 
                     <h2>Ayo Bergabung!</h2>
                     <p>

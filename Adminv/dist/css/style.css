@@ -12,10 +12,16 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ddd;
+  background-color: #eee;
   font-size: 14px;
 }
-
+/* logo perpustakaan */
+.img {
+  padding: 15px;
+  width: 120px;
+  position: center;
+  justify-content: center;
+}
 .container {
   background-color: #fff;
   width: 760px;
@@ -38,6 +44,7 @@ body {
   flex-direction: column;
   height: 550px;
   transition: all 0.5s ease-in;
+  background: #fff;
 }
 .container .forms-container .form-control h2 {
   font-size: 2rem;
@@ -51,16 +58,16 @@ body {
   margin: 10px 0px;
   border: none;
   padding: 15px;
-  background-color: #efefef;
+  background-color: #fff;
   border-radius: 5px;
 }
 .container .forms-container .form-control form button {
   border: none;
   padding: 20px;
   margin-top: 5px;
-  background-color: #e93434;
+  background-color: #c21010;
   border-radius: 5px;
-  color: #fff;
+  color: #fffde3;
   cursor: pointer;
 }
 .container .forms-container .form-control form button:focus {
@@ -69,23 +76,7 @@ body {
 .container .forms-container .form-control span {
   margin: 10px 0px;
 }
-.container .forms-container .form-control .socials i {
-  margin: 0 5px;
-  color: #fff;
-  border-radius: 50%;
-}
-.container .forms-container .form-control .socials .fa-facebook-f {
-  padding: 5px 8px;
-  background-color: #3b5998;
-}
-.container .forms-container .form-control .socials .fa-google-plus-g {
-  padding: 5px 4px;
-  background-color: #db4a39;
-}
-.container .forms-container .form-control .socials .fa-linkedin-in {
-  padding: 5px 6px;
-  background-color: #0e76a8;
-}
+
 .container .forms-container .form-control.signup-form {
   opacity: 0;
   z-index: 1;
@@ -110,7 +101,7 @@ body {
   flex-direction: column;
   height: 550px;
   color: #fff;
-  background: linear-gradient(170deg, #a50707, #ff3636);
+  background: linear-gradient(170deg, #c21010, #e64848);
   transition: all 0.5s ease-in;
 }
 .container .intros-container .intro-control .intro-control__inner {
@@ -119,7 +110,7 @@ body {
 .container .intros-container .intro-control button {
   border: none;
   padding: 15px 30px;
-  background-color: #e01f1f;
+  background-color: #c21010;
   border-radius: 50px;
   color: #fff;
   margin: 10px 0px;
@@ -158,10 +149,10 @@ body {
 }
 .change .intros-container .intro-control {
   transform: translateX(-100%);
-  background: linear-gradient(170deg, #ff3636, #a50707);
+  background: linear-gradient(170deg, #e64848, #c21010);
 }
 .change .intros-container .intro-control #signin-btn {
-  background-color: #e01f1f;
+  background-color: #c21010;
 }
 .change .intros-container .intro-control.signin-intro {
   opacity: 0;
