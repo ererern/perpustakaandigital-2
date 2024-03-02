@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <div class="container">
-        <a href="" class="brand-link">
-            <span class="brand-text font-weight-light"><img src="adminv/book2.png" width="20%" style="border-radius: 100%;" alt="logo Perpustakaan">Perpustakaan Digital</span>
+        <a href="#" class="brand-link">
+            <span class="brand-text font-weight-light"><img src="adminv/book2.png" width="20%" style="border-radius: 100%;" alt="logo Perpustakaan"><strong>Perpustakaan Digital</strong></span>
         </a>
     </div>
 

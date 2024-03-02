@@ -45,7 +45,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item" href="index.php?page=logout" onclick="return confirm('Apa anda yakin akan Logout?')">
-                                <i class="fas fa-sign-out-alt"></i> Logout
+                                <i class="fa fa-power-off"></i> Logout
                             </a>
                         </li>
                     </ul>

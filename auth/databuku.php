@@ -35,40 +35,48 @@
                             foreach ($fung->katbuku($d['BukuID']) as $d) { ?>
                                 <span class="badge badge-primary"><?= $d['NamaKategori']; ?></span>
                             <?php    }
-
                             ?>
                         </td>
                         <td>
                             <!-- if -->
-
                             <?php
                             $cek = new Koneksi();
                             $UserID = $_SESSION['data']['UserID'];
                             $BukuID = $d['BukuID'];
                             $sql = "SELECT * FROM peminjaman WHERE  BukuID='$BukuID'  and UserID='$UserID' and StatusPeminjaman<>'selesai'";
+                            $sql2 = "SELECT * FROM peminjaman WHERE BukuID='$BukuID' and UserID='$UserID'";
                             $result = mysqli_query($cek->koneksi(), $sql);
+                            $result2 = mysqli_query($cek->koneksi(), $sql2);
                             $hitung = mysqli_num_rows($result);
-
-
+                            // var_dump($hitung);
+                            $ok = mysqli_fetch_assoc($result2);
+                            //  var_dump($ok);
                             ?>
                             <?php
                             if ($_SESSION['data']['Role'] == 'user') { ?>
                                 <?php
                                 if ($hitung > 0) { ?>
                                     <button type="button" class="btn btn-info btn-sm" disabled>Pinjam</button>
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ulas<?= $d['BukuID'] ?>">Ulas</button>
                                 <?php } else { ?>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#pinjam<?= $d['BukuID'] ?>">Pinjam</button>
-                                    <button type="button" class="btn btn-warning btn-sm" disabled>Ulas</button>
                                 <?php }
                                 ?>
-                            <?php }
+                                <?php
+                                if (!empty($ok)) { // Mengubah pengecekan ini
+                                    if ($ok['StatusPeminjaman'] == 'selesai') { ?>
+                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#ulas<?= $d['BukuID'] ?>">Ulas</button>
+                                    <?php
+                                    }
+                                    ?>
+                                <?php }
+                                ?>
+
+                            <?php } // Ini adalah penutup blok untuk peran 'user' 
                             ?>
 
                             <?php
                             if ($_SESSION['data']['Role'] == 'admin' || $_SESSION['data']['Role'] == 'petugas') { ?>
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit<?= $d['BukuID'] ?>"><i class="fa fa-edit fa-sm text-white"></i></button>
-
                                 <a href="dashboard.php?page=hapusBuku&BukuID=<?= $d['BukuID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah yakin menghapus Buku ini ? ') "> <i class="fa fa-trash"></i> </a>
                             <?php }
                             ?>
@@ -77,10 +85,10 @@
                 <?php
                 }
                 ?>
-
             </tbody>
         </table>
 
+        <!-- tambah buku -->
         <div class="modal fade" id="tambahbuku">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -111,7 +119,7 @@
                             <div class="form-group">
                                 <?php
                                 foreach ($fung->viewKategori() as $d) { ?>
-                                    <div><input type="checkbox" name="Kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>"> <?= $d['NamaKategori'] ?></div>
+                                    <div><input type="checkbox" name="kategori[<?= $d['KategoriID'] ?>]" value="<?= $d['KategoriID'] ?>"> <?= $d['NamaKategori'] ?></div>
                                 <?php  }
                                 ?>
                             </div>
@@ -235,7 +243,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="dashboard.php?page=postUlasan" method="post">
+                        <form action="dashboard.php?page=postulasan" method="post">
                             <div class="modal-body">
                                 <input type="text" name="BukuID" value="<?= $d['BukuID']; ?>" hidden>
                                 <input type="text" value="<?= $_SESSION['data']['UserID']; ?>" name="UserID" hidden>
@@ -249,13 +257,18 @@
                                     <textarea name="Ulasan" class="form-control" cols="30" rows="10" required></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Ratting</label>
-                                    <select name="Ratting" class="form-control" required>
+                                    <label for="">Rating</label>
+                                    <select name="Rating" class="form-control" required>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
-                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
                             </div>

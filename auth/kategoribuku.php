@@ -31,7 +31,7 @@
                             <td><?= $no++ ?></td>
                             <td><?= $d['NamaKategori'] ?></td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#edit<?= $d['KategoriID'] ?>"><i class="fa fa-edit fa-sm text-white"></i></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit<?= $d['KategoriID'] ?>"><i class="fa fa-edit fa-sm text-white"></i></button>
                                 <a href="dashboard.php?page=hapusKategori&KategoriID=<?= $d['KategoriID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah yakin menghapus Kategori <?= $d['NamaKategori'] ?>?')"><i class="fa fa-trash"></i></a>
 
                             </td>
