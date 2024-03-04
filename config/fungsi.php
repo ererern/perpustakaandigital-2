@@ -21,8 +21,17 @@ class Fungsi
     {
         $cek = new Koneksi;
         $sql = "INSERT INTO kategoribuku VALUES (null, '$NamaKategori')";
-        $query = mysqli_query($cek->koneksi(), $sql);
-
+        $sql2 = "SELECT * FROM kategoribuku WHERE NamaKategori = '$NamaKategori'";
+        $query2 = mysqli_query($cek->koneksi(), $sql2);
+        if(mysqli_num_rows($query2) > 0) {
+        // Jika username sudah ada, tampilkan pesan kesalahan
+        echo "<script>";
+        echo 'alert("Kategori sudah tersedia.");';
+        echo 'window.location.href = "dashboard.php?page=kategoribuku";';
+        echo '</script>';
+        return;
+    }
+ $query = mysqli_query($cek->koneksi(), $sql);
         if ($query) {
             echo "<script>";
             echo 'alert("Kategori Berhasil Ditambah!");';
@@ -115,7 +124,17 @@ class Fungsi
             echo 'window.location.href = "dashboard.php?page=databuku";';
             echo '</script>';
             exit();
-        }
+        } 
+        $sql2 = "SELECT * FROM buku WHERE Judul = '$Judul'";
+        $query2 = mysqli_query($cek->koneksi(), $sql2);
+        if(mysqli_num_rows($query2) > 0) {
+        // Jika username sudah ada, tampilkan pesan kesalahan
+        echo "<script>";
+        echo 'alert("Buku sudah tersedia.");';
+        echo 'window.location.href = "dashboard.php?page=databuku";';
+        echo '</script>';
+        return;
+    }
         $query = mysqli_query($cek->koneksi(), $sql);
         $baru = "SELECT * FROM buku ORDER BY BukuID DESC limit 1";
         $query2 = mysqli_query($cek->koneksi(), $baru);
@@ -363,6 +382,16 @@ class Fungsi
         $NamaLengkap = $data['NamaLengkap'];
         $Alamat = $data['Alamat'];
         $sql = "INSERT INTO user VALUES (NULL, '$Username','$Password','$Email', '$telp' ,'$NamaLengkap','$Alamat','petugas')";
+          $sql2 = "SELECT * FROM user WHERE Username = '$Username'";
+    $cek2 = mysqli_query($cek->koneksi(), $sql2);
+    if(mysqli_num_rows($cek2) > 0) {
+        // Jika username sudah ada, tampilkan pesan kesalahan
+        echo "<script>";
+        echo 'alert("Username sudah terpakai.");';
+        echo 'window.location.href = "index.php?page=logRegist";';
+        echo '</script>';
+        return;
+    }
         $query = mysqli_query($cek->koneksi(), $sql);
         if ($query) {
             echo "<script>";
