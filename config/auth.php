@@ -14,6 +14,17 @@ class Auth
         $NamaLengkap = $data['NamaLengkap'];
         $Alamat = $data['Alamat'];
         $sql = "INSERT INTO user VALUES (NULL, '$Username','$Password','$Email', $telp ,'$NamaLengkap','$Alamat','user')";
+         $sql2 = "SELECT * FROM user WHERE Username = '$Username'";
+    $cek2 = mysqli_query($cek->koneksi(), $sql2);
+    if(mysqli_num_rows($cek2) > 0) {
+        // Jika username sudah ada, tampilkan pesan kesalahan
+        echo "<script>";
+        echo 'alert("Username sudah terpakai.");';
+        echo 'window.location.href = "index.php?page=logRegist";';
+        echo '</script>';
+        return;
+    }
+        
         $query = mysqli_query($cek->koneksi(), $sql);
         if ($query) {
             echo "<script>";
