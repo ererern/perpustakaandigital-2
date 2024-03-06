@@ -388,7 +388,7 @@ class Fungsi
         // Jika username sudah ada, tampilkan pesan kesalahan
         echo "<script>";
         echo 'alert("Username sudah terpakai.");';
-        echo 'window.location.href = "index.php?page=logRegist";';
+        echo 'window.location.href = "dashboard.php?page=petugas";';
         echo '</script>';
         return;
     }
